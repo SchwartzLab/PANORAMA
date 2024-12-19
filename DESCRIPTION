@@ -1,0 +1,62 @@
+Package: PANORAMA
+Title: PANORAMA. A package to process Pan-Mod-seq data
+Version: 1.2.5
+Authors@R: 
+    person(given = "Miguel Angel",
+           family = "Garcia-Campos",
+           role = c("aut", "cre"),
+           email = "garciacampos.bioinfo@gmail.com",
+           comment = c(ORCID = "0000-0001-5223-8174", 
+                       webpage = "https://angelcampos.github.io/"))
+Description: A package to process Pan-Mod-seq data
+License: Artistic-2.0 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Remotes:
+    github::AngelCampos/txtools,
+    bioc::GenomicRanges,
+    bioc::Biostrings,
+    bioc::IRanges,
+    bioc::ShortRead,
+    bioc::Rsamtools,
+    bioc::S4Vectors,
+    bioc::GenomicAlignments,
+    bioc::plyranges
+Imports: 
+    AUC,
+    Biostrings,
+    data.table,
+    dplyr,
+    GenomicAlignments,
+    GenomicRanges,
+    GGally,
+    ggplot2,
+    gridExtra,
+    IRanges,
+    lifecycle,
+    magrittr,
+    parallel,
+    plyranges,
+    pracma,
+    purrr,
+    rlang,
+    Rsamtools,
+    S4Vectors,
+    seqinr,
+    ShortRead,
+    stringr,
+    tibble,
+    tidyr,
+    tidyselect,
+    txtools (>= 1.0.0)
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    knitr,
+    rmarkdown,
+    pheatmap,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
