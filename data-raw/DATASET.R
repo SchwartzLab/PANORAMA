@@ -32,6 +32,31 @@ RNAmods_vec_ext <- c("m1A", "m66A", "m3C", "m5C", "ac4C", "m1G", "m22G", "m7G", 
 
 RNAmods_vec_plus <- c(RNAmods_vec_ext, "ho5C", "m2G", "m4Cm", "m6A", "m2A", "m5U")
 
+# META default variables list
+vList <- list(libNum = c("499", "524", "553", "697"),
+              organism = sort(c("Human_Yeast", "PyroAbyss", "TherAcid", "Yeast",
+                                "Human", "Hs_Sc", "ThermoKoda", "ClosTherm", "Mouse",
+                                "PlanoHalo", "HsSc", "BSubtilis", "PyroFurio", "EColi",
+                                "Tacid", "Hvolc", "PAO", "SL1344", "Sacid"), decreasing = TRUE),
+              RTase = c("SSIII", "SSIV", "TGIRT", "RTHIV"),
+              libTreat = c("Ac4C", "CMC", "DeacetylatedAc4C", "MocklowdNTPs",
+                           "Mock", "Dimroth", "m5C", "AlkBmix", "RBSseqHeatMg",
+                           "NaBH4HydBiotin", "BIDseq"),
+              bioTreat = sort(c("10C", "15C", "25C", "30C", "37C", "42C", "50C",
+                                "60C", "65deg", "75deg",
+                                "78deg", "80deg", "85deg", "95deg", "100deg",
+                                "102deg", "AcidpH1", "AcidpH2", "AcidpH3",
+                                "pH1", "pH2", "pH3", "pH1p4_42C", "pH2p4_30C",
+                                "pH2p4_42C", "pH2p4_50C", "pH4_42C", "OD1_25C",
+                                "OD1_30C", "OD1_37C", "OD2_25C", "OD2_30C",
+                                "OD2_37C", "pH2p5_75C", "pH3_55C", "pH3p5_75C",
+                                "pH5_75C", "pHunk_85C", "WT_10mth", "WT_30mth",
+                                "CR_30mth", "RM_30mth", "3T3"), decreasing = TRUE),
+              replicate = c(paste0("rep", 1:6), "S5", "S6"))
+
+
+
+usethis::use_data(vList, overwrite = TRUE)
 usethis::use_data(RNAMod_baseNuc, overwrite = TRUE)
 usethis::use_data(RNAMod_nucRef, overwrite = TRUE)
 usethis::use_data(panorama_baseCols, overwrite = TRUE)
@@ -182,30 +207,6 @@ usethis::use_data(RNAModFunList, overwrite = TRUE)
 usethis::use_data(RNAmod_metrics, overwrite = TRUE)
 usethis::use_data(allMetrics, overwrite = TRUE)
 
-# META default variables list ##################################################
-
-vList <- list(libNum = c("499", "524", "553", "697"),
-              organism = sort(c("Human_Yeast", "PyroAbyss", "TherAcid", "Yeast",
-                                "Human", "Hs_Sc", "ThermoKoda", "ClosTherm", "Mouse",
-                                "PlanoHalo", "HsSc", "BSubtilis", "PyroFurio", "EColi",
-                                "Tacid", "Hvolc", "PAO", "SL1344", "Sacid"), decreasing = TRUE),
-              RTase = c("SSIII", "SSIV", "TGIRT", "RTHIV"),
-              libTreat = c("Ac4C", "CMC", "DeacetylatedAc4C", "MocklowdNTPs",
-                           "Mock", "Dimroth", "m5C", "AlkBmix", "RBSseqHeatMg",
-                           "NaBH4HydBiotin", "BIDseq"),
-              bioTreat = sort(c("10C", "15C", "25C", "30C", "37C", "42C", "50C",
-                                "60C", "65deg", "75deg",
-                                "78deg", "80deg", "85deg", "95deg", "100deg",
-                                "102deg", "AcidpH1", "AcidpH2", "AcidpH3",
-                                "pH1", "pH2", "pH3", "pH1p4_42C", "pH2p4_30C",
-                                "pH2p4_42C", "pH2p4_50C", "pH4_42C", "OD1_25C",
-                                "OD1_30C", "OD1_37C", "OD2_25C", "OD2_30C",
-                                "OD2_37C", "pH2p5_75C", "pH3_55C", "pH3p5_75C",
-                                "pH5_75C", "pHunk_85C", "WT_10mth", "WT_30mth",
-                                "CR_30mth", "RM_30mth", "3T3"), decreasing = TRUE),
-              replicate = c(paste0("rep", 1:6), "S5", "S6"))
-usethis::use_data(vList, overwrite = TRUE)
-
 # Taoka Sc sites ###############################################################
 rRNAmods_Sc_Taoka <- readRDS("/home/labs/schwartzlab/miguelg/BIGDATA/RNAmod_Annot/Taoka/rib_mods_Sc.rds")
 usethis::use_data(rRNAmods_Sc_Taoka, overwrite = TRUE)
@@ -271,14 +272,12 @@ if(!all(file.exists(META$BAM))){
               zipped = TRUE,
               STARgenomeDir = STARGenome,
               alignEndsType = "Local",
-              outSAMtype = "BAM Unsorted",
               outDir = OUTDIR)
     alignSTAR(read1Files = META[libTreat == "m5C" | libTreat == "RBSseqHeatMg", FASTQ],
               nCores = NCORES,
               zipped = TRUE,
               STARgenomeDir = STARGenome_bis,
               alignEndsType = "Local",
-              outSAMtype = "BAM Unsorted",
               outDir = OUTDIR)
 }
 
